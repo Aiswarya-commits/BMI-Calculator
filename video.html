@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise video</title>
+</head>
+<body>
+    <div id="bmi-info"></div>
+    <iframe style="position: absolute; left: 390px; top: 200px;" id="exercise-video" width="620" height="415" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen></iframe>
+
+    <script>
+        function getQueryParams(){
+            const params = new URLSearchParams(window.location.search);
+            return{
+                bmi: params.get('BMI'),
+                status: params.get('status'),
+                videoUrl: params.get('videoUrl')
+            };
+        }
+        const { bmi, status, videoUrl } = getQueryParams();
+        const bmiInfo = document.getElementById('bmi-info');
+        bmiInfo.innerHTML = 
+        `
+        <div style="background-image:url(https://www.youtube.com/watch?v=DSfoev51IhI&pp=ygUYaG93IHRvIGdhaW4gd2VpZ2h0IGZhc3Qg); background-size:cover;background-repeat:no-repeat;  height:750px">
+        <div style="margin-left:490px  ; padding-top:80px; font-size:28px;"
+        >
+        you are classified as <strong> ${status}</strong></div>
+        <br>
+       <div style="margin-left:420px  ; margin-top:15px; font-size:20px"> you can refer the video given below to maintain a healthy routine</div>
+</div>
+       `
+       const videoElement = document.getElementById('exercise-video');
+       videoElement.src = decodeURIComponent(videoUrl);
+
+
+
+
+    </script>
+</body>
+</html>
